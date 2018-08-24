@@ -1,5 +1,9 @@
 apt-get update
 apt-get install postgresql-10
-su - postgres
-createuser confluenceuser
-createdb -O confluenceuser confluencedb
+runuser -l postgres -c "createuser confluenceuser"
+runuser -l postgres -c "createdb -O confluenceuser confluencedb"
+echo "Downloading Confluence installer..."
+wget "https://www.atlassian.com/software/confluence/downloads/binary/atlassian-confluence-6.10.0-x64.bin"
+sudo chmod 555 atlassian-confluence-6.10.0-x64.bin
+./atlassian-confluence-6.10.0-x64.bin
+rm atlassian-confluence-6.10.0-x64.bin
